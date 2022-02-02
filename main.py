@@ -15,11 +15,13 @@ def getMusic(update, context):
     link = update.message.text
     cht_id = update.message.chat_id
     link = href.GetAllTags(link, '.*mp3.*')
+    update.message.reply_text(f'{len(link)} song found')
     for i in link:
-        # update.message.reply_text(f'downloading {os.path.basename(i)}')
-        tmp = requests.get(i)
-        # update.message.reply_text(f'download comleted, sending to telegram')
-        bot.send_audio(chat_id=cht_id, audio=tmp.content, title=f'{os.path.basename(i)}')
+        if('http' in i):
+            # update.message.reply_text(f'downloading {os.path.basename(i)}')
+            tmp = requests.get(i)
+            # update.message.reply_text(f'download comleted, sending to telegram')
+            bot.send_audio(chat_id=cht_id, audio=tmp.content, title=f'{os.path.basename(i)}')
     update.message.reply_text(f'all songs sent :)')
 
 
