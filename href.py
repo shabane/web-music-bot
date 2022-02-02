@@ -17,10 +17,10 @@ with open("headers", "r") as fli:
         headers = {}
 
 
-musics = set()
+
 # finding the all tag a and link's
 def GetAllTags(url: str, pattern: str):
-
+    musics = set()
     site = requests.get(url, headers=headers)
 
     if site.status_code != 200:
