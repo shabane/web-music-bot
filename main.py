@@ -19,12 +19,14 @@ def getMusic(update, context):
     for i in link:
         name = os.path.basename(i).replace('%', ' ')
         if('http' in i):
-            print(i)
-            try:
-                bot.sendAudio(chat_id=cht_id, audio=i, title=name)
-            except:
-                tmp = requests.get(i)
-                bot.send_audio(chat_id=cht_id, audio=tmp.content, title=name)
+            if(not 'zip' in i):
+                print(i)
+                try:
+                    bot.sendAudio(chat_id=cht_id, audio=i, title=name)
+                except:
+                    tmp = requests.get(i)
+                    if(not (len(tmp.content) / 2**20) > 50):
+                        bot.send_audio(chat_id=cht_id, audio=tmp.content, title=name)
     update.message.reply_text(f'all songs sent :)')
 
 
