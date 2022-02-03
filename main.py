@@ -32,14 +32,15 @@ def letStart(update, context):
 
 
 def status(update, context):
-    update.message.reply_text('the bot is alive')
+    update.message.reply_text('bot is alive')
 
 
 updater = Updater(token=token)
 dispatcher = updater.dispatcher
 
+
+dispatcher.add_handler(CommandHandler('status', status))
 dispatcher.add_handler(MessageHandler(Filters.text, letStart))
-dispatcher.add_error_handler(CommandHandler('/status', status))
 
 updater.start_polling()
 updater.idle()
