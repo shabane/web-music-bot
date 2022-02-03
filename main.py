@@ -5,7 +5,7 @@ import requests
 import os
 import threading
 
-token = '806045748:AAG0mo-_azdcu-pcF0Y1CoGwJDvj3o-Ax4Y'
+token = '5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U'
 
 bot = telegram.Bot(token=token)
 
