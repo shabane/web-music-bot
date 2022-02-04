@@ -21,6 +21,7 @@ with open("headers", "r") as fli:
 # finding the all tag a and link's
 def GetAllTags(url: str, pattern: str):
     musics = set()
+    global headers
     site = requests.get(url, headers=headers)
 
     if site.status_code != 200:
@@ -33,8 +34,11 @@ def GetAllTags(url: str, pattern: str):
                 if re.search(f"{pattern}", i["href"], re.IGNORECASE):
                     musics.add(re.search(f"{pattern}", i["href"], re.IGNORECASE).string)
             except:
-                return False
-        return musics
+                pass
+        if(musics):
+            return musics
+        else:
+            return False
 
 
 
