@@ -5,7 +5,7 @@ import requests
 import os
 import threading
 
-token = '5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U'
+token = os.getenv('TOKEN')
 
 bot = telegram.Bot(token=token)
 
@@ -15,20 +15,25 @@ def getMusic(update, context):
     link = update.message.text
     cht_id = update.message.chat_id
     link = href.GetAllTags(link, '.*mp3.*')
-    update.message.reply_text(f'{len(link)} song found')
-    for i in link:
-        name = os.path.basename(i).replace('%', ' ')
-        if('http' in i):
-            if(not 'zip' in i):
-                print(i)
-                try:
-                    bot.sendAudio(chat_id=cht_id, audio=i, title=name)
-                except:
-                    tmp = requests.get(i)
-                    if(not (len(tmp.content) / 2**20) > 50):
-                        bot.send_audio(chat_id=cht_id, audio=tmp.content, title=name)
-    update.message.reply_text(f'all songs sent :)')
-
+    if(link):
+        update.message.reply_text(f'{len(link)} song found')
+        for i in link:
+            name = os.path.basename(i).replace('%', ' ')
+            if('http' in i):
+                if(not '.zip' in i):
+                    print(i)
+                    try:
+                        print('by telegram', i)
+                        bot.sendAudio(chat_id=cht_id, audio=i, title=name)
+                    except:
+                        print('by download', i)
+                        tmp = requests.get(i)
+                        if(not (len(tmp.content) / 2**20) > 50):
+                            bot.send_audio(chat_id=cht_id, audio=tmp.content, title=name)
+        update.message.reply_text(f'all songs sent :)')
+    else:
+        print('no song found')
+        update.message.reply_text(f'no song found :(')
 
 threads = []
 def letStart(update, context):

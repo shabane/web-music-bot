@@ -33,7 +33,7 @@ def GetAllTags(url: str, pattern: str):
                 if re.search(f"{pattern}", i["href"], re.IGNORECASE):
                     musics.add(re.search(f"{pattern}", i["href"], re.IGNORECASE).string)
             except:
-                return "i didn't found any song"
+                return False
         return musics
 
 
