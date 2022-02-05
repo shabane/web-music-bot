@@ -35,7 +35,7 @@ def GetAllTags(url: str, pattern: str):
 with open("headers.json", "r") as fli:
     fli = json.load(fli)
     if type(fli) != dict:
-        print("Error: the header file should be a json file", file=sys.stderr)
+        print("Error: the header.json file not follow JSON format!", file=sys.stderr)
     elif type(fli) == dict:
         headers = fli
     else:
