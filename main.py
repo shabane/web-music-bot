@@ -8,6 +8,9 @@ import requests
 import threading
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
+# Config
+TOKEN = os.getenv('TOKEN')
+
 # Functions
 def getMusic(update, context):
     link = update.message.text
@@ -41,18 +44,18 @@ def letStart(update, context):
 def status(update, context):
     update.message.reply_text('bot is alive')
 
-token = os.getenv('TOKEN')
+# Start point
+if __name__ == "__main__":
+    print("Starting.")
 
-bot = telegram.Bot(token=token)
+    threads = []
+    
+    bot = telegram.Bot(token=TOKEN)
+    updater = Updater(token=TOKEN)
+    dispatcher = updater.dispatcher
 
-threads = []
+    dispatcher.add_handler(CommandHandler('status', status))
+    dispatcher.add_handler(MessageHandler(Filters.text, letStart))
 
-updater = Updater(token=token)
-dispatcher = updater.dispatcher
-
-
-dispatcher.add_handler(CommandHandler('status', status))
-dispatcher.add_handler(MessageHandler(Filters.text, letStart))
-
-updater.start_polling()
-updater.idle()
+    updater.start_polling()
+    updater.idle()
