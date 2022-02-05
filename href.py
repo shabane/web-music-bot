@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
+# Libraries
+import re
+import sys
+import json
 import requests
 from bs4 import BeautifulSoup as bs
-import re
-import json
-import sys
 
-# Finding the all tag a and link's
+# Functions
+## Finding the all tag a and link's
 def GetAllTags(url: str, pattern: str):
     global headers
 
