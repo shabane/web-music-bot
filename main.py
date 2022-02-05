@@ -17,12 +17,12 @@ def getMusic(update, context):
     cht_id = update.message.chat_id
     link = href.GetAllTags(link, '.*mp3.*')
 
-    if(link):
+    if link:
         update.message.reply_text(f'{len(link)} song found')
         for i in link:
             name = os.path.basename(i).replace('%', ' ')
-            if('http' in i):
-                if(not '.zip' in i):
+            if 'http' in i:
+                if not '.zip' in i:
                     print(i)
                     try:
                         print('by telegram', i)
@@ -30,7 +30,7 @@ def getMusic(update, context):
                     except:
                         print('by download', i)
                         tmp = requests.get(i)
-                        if(not (len(tmp.content) / 2**20) > 50):
+                        if not (len(tmp.content) / 2**20) > 50:
                             bot.send_audio(chat_id=cht_id, audio=tmp.content, title=name)
         update.message.reply_text(f'all songs sent :)')
     else:
