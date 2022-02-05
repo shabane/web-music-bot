@@ -1,10 +1,14 @@
+#!/usr/bin/python3
+
+# Libraries
+import os
 import href
-from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 import telegram
 import requests
-import os
 import threading
+from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
+# Functions
 def getMusic(update, context):
     link = update.message.text
     cht_id = update.message.chat_id
