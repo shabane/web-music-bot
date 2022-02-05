@@ -6,19 +6,7 @@ import re
 import json
 import sys
 
-
-with open("headers", "r") as fli:
-    fli = json.load(fli)
-    if type(fli) != dict:
-        print("err: the header file should be a json file", file=sys.stderr)
-    elif type(fli) == dict:
-        headers = fli
-    else:
-        headers = {}
-
-
-
-# finding the all tag a and link's
+# Finding the all tag a and link's
 def GetAllTags(url: str, pattern: str):
     musics = set()
     global headers
@@ -40,5 +28,11 @@ def GetAllTags(url: str, pattern: str):
         else:
             return False
 
-
-
+with open("headers", "r") as fli:
+    fli = json.load(fli)
+    if type(fli) != dict:
+        print("err: the header file should be a json file", file=sys.stderr)
+    elif type(fli) == dict:
+        headers = fli
+    else:
+        headers = {}
