@@ -26,7 +26,7 @@ def GetAllTags(url: str, pattern: str):
                     musics.add(re.search(f"{pattern}", i["href"], re.IGNORECASE).string)
             except:
                 pass
-        if(musics):
+        if musics:
             return musics
         else:
             return False
