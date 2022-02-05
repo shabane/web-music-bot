@@ -5,16 +5,11 @@ import requests
 import os
 import threading
 
-token = os.getenv('TOKEN')
-
-bot = telegram.Bot(token=token)
-
-
 def getMusic(update, context):
-
     link = update.message.text
     cht_id = update.message.chat_id
     link = href.GetAllTags(link, '.*mp3.*')
+
     if(link):
         update.message.reply_text(f'{len(link)} song found')
         for i in link:
@@ -35,15 +30,18 @@ def getMusic(update, context):
         print('no song found')
         update.message.reply_text(f'no song found :(')
 
-threads = []
 def letStart(update, context):
     t = threading.Thread(target=getMusic, args=(update, context))
     threads.append(t.start())
 
-
 def status(update, context):
     update.message.reply_text('bot is alive')
 
+token = os.getenv('TOKEN')
+
+bot = telegram.Bot(token=token)
+
+threads = []
 
 updater = Updater(token=token)
 dispatcher = updater.dispatcher
