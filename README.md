@@ -14,4 +14,4 @@ For example, This [link](https://www.topseda.ir/78706/best-playlist-billie-eilis
 
 To deploy the bot all you need is get a *Telegram Bot token*. to do that just send a message to [*@botfather*](https://t.me/BotFather) in Telegram.
 
-And put the `TOKEN` in the *toekn* variable in `main.py`.
+And put your token in `TOKEN` variable at `main.py`.
