@@ -6,16 +6,14 @@ import requests
 import threading
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
-print('starting the bot ...')
-
 # Config
-TOKEN = os.getenv('5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U')
+TOKEN = '5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U'
 
 # Functions
 def getMusic(update, context):
     link = update.message.text
     cht_id = update.message.chat_id
-    link = href.GetAllTags(link, '.*mp3.*')
+    link = href.GetAllTags(link)
 
     if link:
         update.message.reply_text(f'{len(link)} song found')
