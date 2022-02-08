@@ -24,10 +24,13 @@ def GetAllTags(url: str):
                 if(src := j.get('href')):
                     if('mp3' in src):
                         musics.add(src)
+                        print(src)
                 else:
                     if(src := j.get('src')):
                         if('mp3' in src):
                             musics.add(src)
+                            print(src)
+                            
         if(musics):
             return musics
         else:
