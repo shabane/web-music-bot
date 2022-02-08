@@ -6,6 +6,8 @@ import requests
 import threading
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
+print('starting the bot ...')
+
 # Config
 TOKEN = os.getenv('5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U')
 
@@ -43,17 +45,17 @@ def status(update, context):
     update.message.reply_text('bot is alive')
 
 # Start point
-if __name__ == "__main__":
-    print("Starting.")
 
-    threads = []
-    
-    bot = telegram.Bot(token=TOKEN)
-    updater = Updater(token=TOKEN)
-    dispatcher = updater.dispatcher
+print("Starting.")
 
-    dispatcher.add_handler(CommandHandler('status', status))
-    dispatcher.add_handler(MessageHandler(Filters.text, letStart))
+threads = []
 
-    updater.start_polling()
-    updater.idle()
+bot = telegram.Bot(token=TOKEN)
+updater = Updater(token=TOKEN)
+dispatcher = updater.dispatcher
+
+dispatcher.add_handler(CommandHandler('status', status))
+dispatcher.add_handler(MessageHandler(Filters.text, letStart))
+
+updater.start_polling()
+updater.idle()
