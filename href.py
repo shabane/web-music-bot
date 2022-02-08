@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup as bs
 
 # Functions
 ## Finding the all tag a and link's
-def GetAllTags(url: str, pattern: str):
+def GetAllTags(url: str):
     global headers
 
     musics = set()
@@ -19,17 +19,20 @@ def GetAllTags(url: str, pattern: str):
         return str("err:", site.status_code, file=sys.stderr)
     else:
         site = bs(site.content, "html.parser")
-        site = site.find_all("a")
-        for i in site:
-            try:
-                if re.search(f"{pattern}", i["href"], re.IGNORECASE):
-                    musics.add(re.search(f"{pattern}", i["href"], re.IGNORECASE).string)
-            except:
-                pass
-        if musics:
+        for i in ('a', 'audio'):
+            for j in site.find_all(i):
+                if(src := j.get('href')):
+                    if('mp3' in src):
+                        musics.add(src)
+                else:
+                    if(src := j.get('src')):
+                        if('mp3' in src):
+                            musics.add(src)
+        if(musics):
             return musics
         else:
             return False
+                        
 
 # Start point
 with open("headers.json", "r") as fli:
