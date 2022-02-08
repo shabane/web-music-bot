@@ -9,7 +9,7 @@ import threading
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
 # Config
-TOKEN = os.getenv('TOKEN')
+TOKEN = os.getenv('5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U')
 
 # Functions
 def getMusic(update, context):
