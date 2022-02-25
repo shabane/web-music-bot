@@ -7,7 +7,7 @@ import threading
 from telegram.ext import Updater, MessageHandler, CommandHandler, Filters
 
 # Config
-TOKEN = '5198855944:AAHRBODh_sYxttNSdan46tqRXoLkFgcWL5U'
+TOKEN = 'removed due to security reason'
 
 # Functions
 def getMusic(update, context):
